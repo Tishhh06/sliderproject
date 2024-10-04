@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+<div class="slider-container">
+
+    <div class="slider-item" id="slider-item-1"><img src="images/1.avif" alt=""></div>
+    <div class="slider-item" id="slider-item-2"><img src="images/2.avif" alt=""></div>
+    <div class="slider-item" id="slider-item-3"><img src="images/3.jpg" alt=""></div>
+    
+    <div class="slider-nav">
+      <button class="prev" onclick="prevSlide()">Prev</button>
+      <button class="next" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+
+
+  <script>
+    
+const sliderItems = document.querySelectorAll('.slider-item');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+
+
+let currentSlide = 0;
+
+
+function nextSlide() {
+  
+  sliderItems[currentSlide].style.display = 'none';
+  
+  currentSlide = (currentSlide + 1) % sliderItems.length;
+ 
+  sliderItems[currentSlide].style.display = 'block';
+}
+
+
+function prevSlide() {
+ 
+  sliderItems[currentSlide].style.display = 'none';
+  
+  currentSlide = (currentSlide - 1 + sliderItems.length) % sliderItems.length;
+  
+  sliderItems[currentSlide].style.display = 'block';
+}
+
+
+sliderItems[currentSlide].style.display = 'block';
+
+prevButton.addEventListener('click', prevSlide);
+nextButton.addEventListener('click', nextSlide);
+
+
+setInterval(nextSlide, 8000);
+  </script>
+</body>
+</html>
